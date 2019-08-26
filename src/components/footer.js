@@ -30,11 +30,11 @@ const Footer = ({ siteTitle }) => (
     </footer>
 )
 
-Header.propTypes = {
+Footer.propTypes = {
     siteTitle: PropTypes.string,
 }
 
-Header.defaultProps = {
+Footer.defaultProps = {
     siteTitle: ``,
 }
 
