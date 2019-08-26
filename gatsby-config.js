@@ -5,6 +5,7 @@ module.exports = {
         title: `Gatsby / WordPress Starter`,
         description: `Site description`,
         author: `@bradleyDouglas`,
+        url: `http://obd.local`
     },
     plugins: [
         {
