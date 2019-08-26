@@ -1,0 +1,51 @@
+{
+  "name": "bozell-gatsby-wp-starter",
+  "private": true,
+  "description": "A simple starter to get up and developing quickly with Gatsby and WordPress",
+  "version": "0.1.0",
+  "author": "Brad Douglas <brad@bradleyjdouglas.com>",
+  "dependencies": {
+    "gatsby": "^2.13.73",
+    "gatsby-image": "^2.2.10",
+    "gatsby-plugin-layout": "^1.1.4",
+    "gatsby-plugin-manifest": "^2.2.6",
+    "gatsby-plugin-offline": "^2.2.7",
+    "gatsby-plugin-react-helmet": "^3.1.4",
+    "gatsby-plugin-react-svg": "^2.1.2",
+    "gatsby-plugin-sass": "^2.1.11",
+    "gatsby-plugin-sharp": "^2.2.13",
+    "gatsby-plugin-transition-link": "^1.12.4",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
+    "gatsby-source-filesystem": "^2.1.11",
+    "gatsby-source-graphql": "^2.1.7",
+    "gatsby-transformer-sharp": "^2.2.7",
+    "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "resolve-url-loader": "^3.1.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  }
+}
