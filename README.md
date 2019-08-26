@@ -11,11 +11,11 @@
 Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React. On the WordPress side, it assumes you're using <a href="https://docs.wpgraphql.com/">WP GraphQL</a>, along with some other helpers for Advanced Custom Fields and Custom Post types:
 
 
-WP GraphiQL: https://github.com/wp-graphql/wp-graphiql
-WP GraphQL Gutenberg: https://github.com/pristas-peter/wp-graphql-gutenberg
-WP GraphQL Gutenberg ACF: https://github.com/pristas-peter/wp-graphql-gutenberg-acf
-WPGraphQL Custom Post Type UI: https://github.com/wp-graphql/wp-graphql-custom-post-type-ui
-WPGraphQL for Advanced Custom Fields: https://www.wpgraphql.com/acf/
+1. WP GraphiQL: https://github.com/wp-graphql/wp-graphiql
+2. WP GraphQL Gutenberg: https://github.com/pristas-peter/wp-graphql-gutenberg
+3. WP GraphQL Gutenberg ACF: https://github.com/pristas-peter/wp-graphql-gutenberg-acf
+4. WPGraphQL Custom Post Type UI: https://github.com/wp-graphql/wp-graphql-custom-post-type-ui
+5. WPGraphQL for Advanced Custom Fields: https://www.wpgraphql.com/acf/
 
 
 ## 🚀 Quick start
@@ -26,7 +26,7 @@ WPGraphQL for Advanced Custom Fields: https://www.wpgraphql.com/acf/
 
     ```sh
     # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
+    gatsby new my-default-starter https://github.com/bozell-omaha/bozell-gatsby-wp-starter
     ```
 
 1.  **Start developing.**
