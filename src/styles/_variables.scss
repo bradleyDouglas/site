@@ -39,4 +39,31 @@ $gray: #EFEEEE;
 $min-width: 320px;
 $max-width: 1400px;
 
+@font-face {
+	font-family: 'Bison-Bold';
+	src: url('../fonts/bison-bold/bison-bold.eot');
+	src: url('../fonts/bison-bold/bison-bold.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/bison-bold/bison-bold.woff2') format('woff2'),
+		url('../fonts/bison-bold/bison-bold.woff') format('woff'),
+		url('../fonts/bison-bold/bison-bold.ttf') format('truetype'),
+		url('../fonts/bison-bold/bison-bold.svg#youworkforthem') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Bison-ThickOutline';
+	src: url('../fonts/bison-outline/bison-thickoutline.eot');
+	src: url('../fonts/bison-outline/bison-thickoutline.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/bison-outline/bison-thickoutline.woff2') format('woff2'),
+		 url('../fonts/bison-outline/bison-thickoutline.woff') format('woff'),
+		 url('../fonts/bison-outline/bison-thickoutline.ttf') format('truetype'),
+	     url('../fonts/bison-outline/bison-thickoutline.svg#youworkforthem') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+$bisonBold: 'Bison-Bold';
+$bisonOutline: 'Bison-ThickOutline';
+$calluna: calluna ,serif;
 

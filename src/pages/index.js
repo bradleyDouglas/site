@@ -1,17 +1,23 @@
 import React from "react"
 import { Link } from "gatsby"
 import SEO from "../components/seo"
+import Slider from "../components/slider"
+import Hold from "../components/hold"
 
 const IndexPage = () => (
     <>
-        <SEO title="Home" />
-        <h1>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-        <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-            <Image />
-        </div>
-        <Link to="/page-2/">Go to page 2</Link>
+        <SEO
+            title="Home"
+            keywords={[
+                `gatsby`,
+                `portfolio`,
+                `front-end developer`,
+                `developer`,
+                `omaha, ne`,
+            ]}
+        />
+        {/* <Slider /> */}
+        <Hold />
     </>
 )
 

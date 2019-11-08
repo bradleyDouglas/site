@@ -5,18 +5,28 @@ module.exports = {
         title: `Gatsby / WordPress Starter`,
         description: `Site description`,
         author: `@bradleyDouglas`,
-        url: `http://obd.local`
+        url: `http://obd.local`,
     },
     plugins: [
+        // {
+        //     resolve: `gatsby-source-graphql`,
+        //     options: {
+        //         // This type will contain remote schema Query type
+        //         typeName: `WPGraphQL`,
+        //         // This is field under which it's accessible
+        //         fieldName: `wpgraphql`,
+        //         // Url to query from. Change the WORDPRESS_URL to the one you need.
+        //         url: `http://personal.local/graphql`,
+        //     },
+        // },
         {
-            resolve: `gatsby-source-graphql`,
+            resolve: `gatsby-transformer-remark`,
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
             options: {
-                // This type will contain remote schema Query type
-                typeName: `WPGraphQL`,
-                // This is field under which it's accessible
-                fieldName: `wpgraphql`,
-                // Url to query from. Change the WORDPRESS_URL to the one you need.
-                // url: `WORDPRESS_URL/graphql`,
+                name: `projects`,
+                path: `${__dirname}/src/projects/`,
             },
         },
         {
@@ -32,11 +42,12 @@ module.exports = {
         `gatsby-plugin-react-helmet`,
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
+        `gatsby-plugin-mdx`,
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `bozell-gatsby-wp-starter`,
-                short_name: `bozell-starter`,
+                name: `brad-douglas-website`,
+                short_name: `portfolio`,
                 start_url: `/`,
                 background_color: `#9dc000`,
                 theme_color: `#9dc000`,
@@ -54,18 +65,15 @@ module.exports = {
         },
         //
         // Un-comment this for webfonts: https://www.gatsbyjs.org/packages/gatsby-plugin-web-font-loader/
-        // {
-        //   resolve: "gatsby-plugin-web-font-loader",
-        //   options: {
-        //     typekit: {
-        //       id: "lft4tcj",
-        //       api: "//use.typekit.net",
-        //     },
-        //     google: {
-        //       families: ['Droid Sans', 'Droid Serif']
-        //     }
-        //   },
-        // },
+        {
+            resolve: "gatsby-plugin-web-font-loader",
+            options: {
+                typekit: {
+                    id: "lft4tcj",
+                    api: "//use.typekit.net",
+                },
+            },
+        },
         //
         // There are two options to keep elements persistent across page changes.
         // By default, we will use the 'Gatsby Plugin Layout', but you can use
@@ -74,20 +82,20 @@ module.exports = {
         // 2) gatsby-plugin-layout: https://www.gatsbyjs.org/packages/gatsby-plugin-layout/
         //
         // Transition Link
-        // {
-        //   resolve: "gatsby-plugin-transition-link",
-        //   options: {
-        //     layout: require.resolve(`./src/components/layout.js`),
-        //   },
-        // },
-        //
-        // Gatsby Plugin Layout
         {
-            resolve: "gatsby-plugin-layout",
+            resolve: "gatsby-plugin-transition-link",
             options: {
-                component: require.resolve(`./src/components/layout.js`),
+                layout: require.resolve(`./src/components/layout.js`),
             },
         },
+        //
+        // Gatsby Plugin Layout
+        // {
+        //     resolve: "gatsby-plugin-layout",
+        //     options: {
+        //         component: require.resolve(`./src/components/layout.js`),
+        //     },
+        // },
         //
         //
         // this (optional) plugin enables Progressive Web App + Offline functionality

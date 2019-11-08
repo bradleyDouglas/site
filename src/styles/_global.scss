@@ -11,7 +11,11 @@ html {
 }
 
 body {
-
+    color: $black;
+    background: $white;
+    font-family: $calluna;
+    font-style: normal;
+    font-weight: 400;
 }
 
 html,
@@ -25,4 +29,60 @@ body,
 #main-container {
     width: 100%;
     min-height: 80%;
+}
+
+.h1,
+.h2,
+.h3,
+.h5 {
+    font-family: $bisonBold;
+}
+
+.h1 {
+    @include fluid-type($min-width, $max-width, 40px, 180px );
+    @include fluid-line($min-width, $max-width, 40px, 140px);
+    @include fluid-letter($min-width, $max-width, 1px, 6.9px);
+}
+
+
+
+//HOLD
+.hold {
+    position: fixed;
+        top: 0;
+        left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__wrapper {
+        width: 85%;
+        max-width: 600px;
+        color: $white;
+        text-align: center;
+
+        .h1 {
+            @include fluid-type($min-width, $max-width, 32px, 64px );
+            @include fluid-line($min-width, $max-width, 40px, 72px);
+            @include fluid-letter($min-width, $max-width, 0px, 1.83px);
+            font-family: $bisonOutline;
+        }
+
+        p {
+            @include fluid-type($min-width, $max-width, 16px, 18px );
+        }
+
+        .h2 {
+            @include fluid-type($min-width, $max-width, 16px, 24px );
+            @include fluid-line($min-width, $max-width, 24px, 30px);
+            @include fluid-letter($min-width, $max-width, 0px, 1px);
+
+            a {
+                color: rgba($white, 0.7);
+            }
+        }
+    }
 }

@@ -7,6 +7,6 @@
 // You can delete this file if you're not using it
 const createPages = require(`./create/createPages`)
 
-exports.createPages = async ({ actions, graphql }) => {
-    await createPages({ actions, graphql })
-}
+// exports.createPages = async ({ actions, graphql }) => {
+//     await createPages({ actions, graphql })
+// }
