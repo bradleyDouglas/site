@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { StaticQuery, graphql } from "gatsby"
 import { TweenMax, TimelineMax, Expo } from "gsap"
 import * as THREE from "three"
-import { data } from "../data"
 import TransitionLink from "gatsby-plugin-transition-link"
 import { Link } from "gatsby"
+const data = require("../data/index").data
 
 const HOME_QUERY = graphql`
     query HomeQuery {
@@ -59,6 +59,8 @@ const bgImages = [...data.map(item => item.mainImage)]
 const titles = [...data.map(item => item.title)]
 const slugs = [...data.map(item => item.slug)]
 
+console.log(data)
+
 class Slider extends Component {
     constructor(props) {
         super(props)
@@ -67,6 +69,7 @@ class Slider extends Component {
         this.slugs = slugs
         this.render = this.render.bind(this)
         this.titleRef = React.createRef()
+        this.numberRef = React.createRef()
         this.touchStart = null
         this.state = {
             current: 0,
@@ -268,21 +271,41 @@ class Slider extends Component {
             opacity: 0,
             filter: "blur(10px)",
             y: -48,
-            ease: Expo.easeOut,
+            ease: Expo.easeInOut,
         })
 
         return tl
     }
 
-    newTitleTL = () => {
-        const tl = new TimelineMax()
+    numberTL = () => {
+        const tl = new TimelineMax({
+            onComplete: () => {
+                TweenMax.fromTo(
+                    this.numberRef.current,
+                    0.7,
+                    {
+                        opacity: 0,
+                        // transform: "perspective(300px) translateY(80%) rotateX(-30deg)",
+                        xPercent: -101,
+                    },
+                    {
+                        opacity: 1,
+                        // transform:
+                        //     "perspective(300px) translateY(0) rotateX(0)",
+                        xPercent: 0,
+                        y: 0,
+                        ease: Expo.easeOut,
+                    }
+                )
+            },
+        })
 
-        tl.fromTo(
-            this.titleRef.current,
-            1,
-            { opacity: 0, filter: "blur(10px)", y: 48 },
-            { opacity: 1, filter: "blur(0px)", y: 0, ease: Expo.easeOut }
-        )
+        tl.to(this.numberRef.current, 1, {
+            opacity: 0,
+            // transform: "perspective(300px) translateY(-80%) rotateX(30deg)",
+            xPercent: -101,
+            ease: Expo.easeInOut,
+        })
 
         return tl
     }
@@ -290,7 +313,10 @@ class Slider extends Component {
     masterTL = next => {
         const masterTL = new TimelineMax()
 
-        masterTL.add(this.imageTL(next), 0).add(this.initialTitleTL(next), 0)
+        masterTL
+            .add(this.imageTL(next), 0)
+            .add(this.initialTitleTL(next), 0)
+            .add(this.numberTL(next), 0)
 
         return masterTL
     }
@@ -327,20 +353,17 @@ class Slider extends Component {
                     ></div>
                     <div className="slide">
                         <div className="slide__wrapper">
-                            <Link to={`/${this.slugs[current]}`}>
-                                <h1
-                                    className="h1 slide__title"
-                                    ref={this.titleRef}
-                                >
+                            <h1 className="h1 slide__title" ref={this.titleRef}>
+                                <Link to={`/${this.slugs[current]}`}>
                                     {this.titles[current]}
-                                </h1>
-                            </Link>
+                                </Link>
+                            </h1>
                         </div>
                     </div>
                     <div className="numbers">
                         <div className="numbers__wrapper">
                             <div className="number number--large">
-                                <span>0{current + 1}</span>
+                                <span ref={this.numberRef}>0{current + 1}</span>
                             </div>
                             <div className="number">
                                 <span>/0{this.titles.length}</span>

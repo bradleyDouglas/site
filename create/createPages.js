@@ -1,61 +1,38 @@
 const path = require(`path`)
 
 module.exports = async ({ actions, graphql }) => {
-    const GET_PAGES = `
-  query GET_PAGES($first:Int $after:String){
-    wpgraphql {
-      pages(
-        first: $first
-        after: $after
-        where: {
-          parent: null
-        }
-      ) {
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        nodes {
-          id
-          uri
-          pageId
-          title
-        }
-      }
-    }
-  }
-  `
-    const { createPage } = actions
-    const allPages = []
-    const fetchPages = async variables =>
-        await graphql(GET_PAGES, variables).then(({ data }) => {
-            const {
-                wpgraphql: {
-                    pages: {
-                        nodes,
-                        pageInfo: { hasNextPage, endCursor },
-                    },
-                },
-            } = data
-            nodes.map(page => {
-                allPages.push(page)
-            })
-            if (hasNextPage) {
-                return fetchPages({ first: variables.first, after: endCursor })
+    const GET_PROJECTS = `
+        query MyQuery {
+            allFile(filter: {sourceInstanceName: {eq: "projects"}}) {
+                nodes {
+                    id
+                }
             }
-            return allPages
+        }
+    `
+    const { createPage } = actions
+    const allProjects = []
+    const fetchProjects = async variables =>
+        await graphql(GET_PROJECTS, variables).then(({ data }) => {
+            const {
+                allFile: { nodes: projects },
+            } = data
+            projects.map(project => {
+                allProjects.push(project)
+            })
+            return allProjects
         })
 
-    await fetchPages({ first: 100, after: null }).then(allPages => {
-        const pageTemplate = path.resolve(`./src/templates/page.js`)
+    await fetchProjects({ first: 100, after: null }).then(allProjects => {
+        const pageTemplate = path.resolve(`./src/templates/project.js`)
 
-        allPages.map(page => {
-            console.log(`create page: ${page.uri}`)
-            createPage({
-                path: `/${page.uri}`,
-                component: pageTemplate,
-                context: page,
-            })
+        allProjects.map(project => {
+            console.log(`create page: ${project}`)
+            // createPage({
+            //     path: `/${page.uri}`,
+            //     component: pageTemplate,
+            //     context: page,
+            // })
         })
     })
 }

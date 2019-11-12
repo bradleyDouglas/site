@@ -16,6 +16,7 @@ body {
     font-family: $calluna;
     font-style: normal;
     font-weight: 400;
+    overflow: hidden;
 }
 
 html,
@@ -44,11 +45,16 @@ body,
     @include fluid-letter($min-width, $max-width, 1px, 6.9px);
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 
 
 //HOLD
 .hold {
-    position: fixed;
+    // position: fixed;
         top: 0;
         left: 0;
     width: 100vw;

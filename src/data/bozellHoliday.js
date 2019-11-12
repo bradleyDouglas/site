@@ -1,5 +1,5 @@
-export const bozellHoliday = {
+module.exports = {
     title: `Bozell Holiday Projects`,
     slug: `bozell-holiday-projects`,
-    mainImage: require("../assets/images/square/holiday-half-square.jpg"),
+    mainImage: `../assets/images/square/holiday-half-square.jpg`,
 }
