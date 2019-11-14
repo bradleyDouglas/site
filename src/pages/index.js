@@ -2,7 +2,6 @@ import React from "react"
 import { Link } from "gatsby"
 import SEO from "../components/seo"
 import Slider from "../components/slider"
-import Hold from "../components/hold"
 
 const IndexPage = () => (
     <>
@@ -16,8 +15,7 @@ const IndexPage = () => (
                 `omaha, ne`,
             ]}
         />
-        {/* <Slider /> */}
-        <Hold />
+        <Slider />
     </>
 )
 

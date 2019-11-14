@@ -1,17 +1,29 @@
 import React, { Component } from "react"
 import { StaticQuery, graphql } from "gatsby"
-import { TweenMax, TimelineMax, Expo } from "gsap"
+import { gsap } from "gsap"
 import * as THREE from "three"
 import TransitionLink from "gatsby-plugin-transition-link"
 import { Link } from "gatsby"
-const data = require("../data/index").data
 
 const HOME_QUERY = graphql`
     query HomeQuery {
-        allMdx {
+        allPrismicProject {
             nodes {
-                frontmatter {
-                    title
+                id
+                slugs
+                data {
+                    featured_image {
+                        localFile {
+                            childImageSharp {
+                                original {
+                                    src
+                                }
+                            }
+                        }
+                    }
+                    project_title {
+                        text
+                    }
                 }
             }
         }
@@ -55,18 +67,27 @@ const fragment = `
     }
 `
 
-const bgImages = [...data.map(item => item.mainImage)]
-const titles = [...data.map(item => item.title)]
-const slugs = [...data.map(item => item.slug)]
-
-console.log(data)
-
 class Slider extends Component {
     constructor(props) {
         super(props)
-        this.images = bgImages
-        this.titles = titles
-        this.slugs = slugs
+        // this.images = bgImages
+        this.images = [
+            ...this.props.data.allPrismicProject.nodes.map(
+                node =>
+                    node.data.featured_image.localFile.childImageSharp.original
+                        .src
+            ),
+        ]
+        this.titles = [
+            ...this.props.data.allPrismicProject.nodes.map(
+                node => node.data.project_title.text
+            ),
+        ]
+        this.slugs = [
+            ...this.props.data.allPrismicProject.nodes.map(
+                node => node.slugs[0]
+            ),
+        ]
         this.render = this.render.bind(this)
         this.titleRef = React.createRef()
         this.numberRef = React.createRef()
@@ -233,11 +254,13 @@ class Slider extends Component {
         this.material.uniforms.nextImage.value = this.bgImages[next]
         this.material.uniforms.nextImage.needsUpdate = true
 
-        const tl = new TimelineMax()
+        // const tl = new TimelineMax()
+        let tl = gsap.timeline()
 
-        tl.to(this.material.uniforms.dispFactor, 1.4, {
+        tl.to(this.material.uniforms.dispFactor, {
+            duration: 1.4,
             value: 1,
-            ease: Expo.easeInOut,
+            ease: "expo.inOut",
             onComplete: () => {
                 this.material.uniforms.currentImage.value = this.bgImages[next]
                 this.material.uniforms.currentImage.needsUpdate = true
@@ -249,74 +272,114 @@ class Slider extends Component {
     }
 
     initialTitleTL = next => {
-        const tl = new TimelineMax({
+        // const tl = new TimelineMax({
+        //     onComplete: () => {
+        //         this.setState({ current: next })
+
+        //         TweenMax.fromTo(
+        //             this.titleRef.current,
+        //             1,
+        //             { opacity: 0, filter: "blur(10px)", y: 48 },
+        //             {
+        //                 opacity: 1,
+        //                 filter: "blur(0px)",
+        //                 y: 0,
+        //                 ease: Expo.easeOut,
+        //             }
+        //         )
+        //     },
+        // })
+        let tl = gsap.timeline({
             onComplete: () => {
                 this.setState({ current: next })
 
-                TweenMax.fromTo(
+                gsap.fromTo(
                     this.titleRef.current,
-                    1,
-                    { opacity: 0, filter: "blur(10px)", y: 48 },
+                    { autoAlpha: 0, filter: "blur(10px)", y: 48 },
                     {
-                        opacity: 1,
+                        duration: 1,
+                        autoAlpha: 1,
                         filter: "blur(0px)",
                         y: 0,
-                        ease: Expo.easeOut,
+                        ease: "expo.out",
                     }
                 )
             },
         })
 
-        tl.to(this.titleRef.current, 1, {
-            opacity: 0,
+        tl.to(this.titleRef.current, {
+            duration: 1,
+            autoAlpha: 0,
             filter: "blur(10px)",
             y: -48,
-            ease: Expo.easeInOut,
+            ease: "expo.inOut",
         })
 
         return tl
     }
 
     numberTL = () => {
-        const tl = new TimelineMax({
+        // const tl = new TimelineMax({
+        //     onComplete: () => {
+        //         TweenMax.fromTo(
+        //             this.numberRef.current,
+        //             0.7,
+        //             {
+        //                 opacity: 0,
+        //                 // transform: "perspective(300px) translateY(80%) rotateX(-30deg)",
+        //                 xPercent: -101,
+        //             },
+        //             {
+        //                 opacity: 1,
+        //                 // transform:
+        //                 //     "perspective(300px) translateY(0) rotateX(0)",
+        //                 xPercent: 0,
+        //                 y: 0,
+        //                 ease: Expo.easeOut,
+        //             }
+        //         )
+        //     },
+        // })
+        let tl = gsap.timeline({
             onComplete: () => {
-                TweenMax.fromTo(
+                gsap.fromTo(
                     this.numberRef.current,
-                    0.7,
                     {
                         opacity: 0,
-                        // transform: "perspective(300px) translateY(80%) rotateX(-30deg)",
                         xPercent: -101,
                     },
                     {
+                        duration: 0.7,
                         opacity: 1,
-                        // transform:
-                        //     "perspective(300px) translateY(0) rotateX(0)",
                         xPercent: 0,
                         y: 0,
-                        ease: Expo.easeOut,
+                        ease: "expo.out",
                     }
                 )
             },
         })
 
-        tl.to(this.numberRef.current, 1, {
+        tl.to(this.numberRef.current, {
+            duration: 1,
             opacity: 0,
-            // transform: "perspective(300px) translateY(-80%) rotateX(30deg)",
             xPercent: -101,
-            ease: Expo.easeInOut,
+            ease: "expo.inOut",
         })
 
         return tl
     }
 
     masterTL = next => {
-        const masterTL = new TimelineMax()
+        // const masterTL = new TimelineMax()
+        let masterTL = gsap.timeline()
 
         masterTL
-            .add(this.imageTL(next), 0)
-            .add(this.initialTitleTL(next), 0)
-            .add(this.numberTL(next), 0)
+            .add(this.imageTL(next), "<")
+            .add(this.initialTitleTL(next), "<")
+            .add(this.numberTL(next), "<")
+        // .call(this.imageTL(next), 0)
+        // .call(this.initialTitleTL(next), 0)
+        // .call(this.numberTL(next), 0)
 
         return masterTL
     }
