@@ -5,6 +5,8 @@ import * as THREE from "three"
 import TransitionLink from "gatsby-plugin-transition-link"
 import { Link } from "gatsby"
 
+gsap.defaults({ overwrite: "auto" })
+
 const HOME_QUERY = graphql`
     query HomeQuery {
         allPrismicProject {
@@ -95,6 +97,7 @@ class Slider extends Component {
         this.state = {
             current: 0,
             previous: null,
+            isAnimating: false,
         }
     }
 
@@ -231,18 +234,20 @@ class Slider extends Component {
     handleScrollEvents = event => {
         let next
 
-        if (event.deltaY > 20) {
+        if (event.deltaY > 20 && !this.state.isAnimating) {
             next =
                 this.state.current === this.titles.length - 1
                     ? 0
                     : this.state.current + 1
             this.masterTL(next)
-        } else if (event.deltaY < -20) {
+            this.setState({ isAnimating: true })
+        } else if (event.deltaY < -20 && !this.state.isAnimating) {
             next =
                 this.state.current - 1 < 0
                     ? this.titles.length - 1
                     : this.state.current - 1
             this.masterTL(next)
+            this.setState({ isAnimating: true })
         }
     }
 
@@ -371,12 +376,16 @@ class Slider extends Component {
 
     masterTL = next => {
         // const masterTL = new TimelineMax()
-        let masterTL = gsap.timeline()
+        let masterTL = gsap.timeline({
+            onComplete: () => {
+                this.setState({ isAnimating: false })
+            },
+        })
 
         masterTL
-            .add(this.imageTL(next), "<")
-            .add(this.initialTitleTL(next), "<")
-            .add(this.numberTL(next), "<")
+            .add(this.imageTL(next), 0)
+            .add(this.initialTitleTL(next), 0)
+            .add(this.numberTL(next), 0)
         // .call(this.imageTL(next), 0)
         // .call(this.initialTitleTL(next), 0)
         // .call(this.numberTL(next), 0)
