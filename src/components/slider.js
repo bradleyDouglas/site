@@ -3,6 +3,7 @@ import { StaticQuery, graphql } from "gatsby"
 import { gsap } from "gsap"
 import * as THREE from "three"
 import TransitionLink from "gatsby-plugin-transition-link"
+import ViewAll from "../assets/svg/viewAll.inline.svg"
 import { Link } from "gatsby"
 
 gsap.defaults({ overwrite: "auto" })
@@ -12,7 +13,7 @@ const HOME_QUERY = graphql`
         allPrismicProject {
             nodes {
                 id
-                slugs
+                uid
                 data {
                     featured_image {
                         localFile {
@@ -86,16 +87,18 @@ class Slider extends Component {
             ),
         ]
         this.slugs = [
-            ...this.props.data.allPrismicProject.nodes.map(
-                node => node.slugs[0]
-            ),
+            ...this.props.data.allPrismicProject.nodes.map(node => node.uid),
         ]
         this.render = this.render.bind(this)
         this.titleRef = React.createRef()
         this.numberRef = React.createRef()
+        this.viewAllRef = React.createRef()
         this.touchStart = null
+        this.localStorageRef = localStorage.getItem("current")
         this.state = {
-            current: 0,
+            current: localStorage.getItem("current")
+                ? JSON.parse(localStorage.getItem("current"))
+                : 0,
             previous: null,
             isAnimating: false,
         }
@@ -379,6 +382,7 @@ class Slider extends Component {
         let masterTL = gsap.timeline({
             onComplete: () => {
                 this.setState({ isAnimating: false })
+                localStorage.setItem("current", JSON.stringify(next))
             },
         })
 
@@ -386,9 +390,6 @@ class Slider extends Component {
             .add(this.imageTL(next), 0)
             .add(this.initialTitleTL(next), 0)
             .add(this.numberTL(next), 0)
-        // .call(this.imageTL(next), 0)
-        // .call(this.initialTitleTL(next), 0)
-        // .call(this.numberTL(next), 0)
 
         return masterTL
     }
@@ -426,13 +427,44 @@ class Slider extends Component {
                     <div className="slide">
                         <div className="slide__wrapper">
                             <h1 className="h1 slide__title" ref={this.titleRef}>
-                                <Link to={`/${this.slugs[current]}`}>
+                                <TransitionLink
+                                    to={`/${this.slugs[current]}`}
+                                    exit={{
+                                        trigger: ({ exit, node }) => {
+                                            gsap.to(
+                                                node.querySelectorAll(
+                                                    ".home-out"
+                                                ),
+                                                {
+                                                    duration: 0.9,
+                                                    yPercent: 100,
+                                                    autoAlpha: 0,
+                                                    stagger: 0.15,
+                                                    ease: "back.inOut(2)",
+                                                    onComplete: () => {
+                                                        gsap.to(node, {
+                                                            duration: 1.3,
+                                                            autoAlpha: 0,
+                                                        })
+                                                    },
+                                                }
+                                            )
+                                        },
+                                        delay: 0.5,
+                                        length: 2.2,
+                                        zIndex: 2,
+                                    }}
+                                    entry={{
+                                        delay: 0,
+                                        zIndex: 0,
+                                    }}
+                                >
                                     {this.titles[current]}
-                                </Link>
+                                </TransitionLink>
                             </h1>
                         </div>
                     </div>
-                    <div className="numbers">
+                    <div className="numbers home-out">
                         <div className="numbers__wrapper">
                             <div className="number number--large">
                                 <span ref={this.numberRef}>0{current + 1}</span>
@@ -441,6 +473,9 @@ class Slider extends Component {
                                 <span>/0{this.titles.length}</span>
                             </div>
                         </div>
+                    </div>
+                    <div className="view-all home-out">
+                        <ViewAll />
                     </div>
                 </section>
             </>

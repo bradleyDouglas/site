@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import SEO from "../components/seo"
 import Slider from "../components/slider"
+import { Helmet } from "react-helmet"
 
 const IndexPage = () => (
     <>
@@ -14,6 +15,11 @@ const IndexPage = () => (
                 `developer`,
                 `omaha, ne`,
             ]}
+        />
+        <Helmet
+            bodyAttributes={{
+                class: "no-scroll",
+            }}
         />
         <Slider />
     </>

@@ -6,6 +6,11 @@
     padding: 32px 16px;
     color: $white;
     z-index: 99;
+    transition: color 0.3s ease;
+
+    .project-template & {
+        color: $black;
+    }
 
     @include media-query($large-up) {
         padding: 42px;

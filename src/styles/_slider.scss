@@ -26,15 +26,18 @@
         height: 100%;
     }
 
-    svg {
+    .view-all {
         position: absolute;
             right: 10vw;
             bottom: 10vh;
-        width: 135px;
-        height: auto;
-        fill: $white;
-        animation: rotate-center 24s linear infinite both;
-        cursor: pointer;
+
+        svg {
+            width: 135px;
+            height: auto;
+            fill: $white;
+            animation: rotate-center 24s linear infinite both;
+            cursor: pointer;
+        }
     }
 }
 

@@ -1,0 +1,248 @@
+
+.project-header {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+
+    @include media-query($large-up) {
+        height: 100vh;
+    }
+
+    &__wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    &__title {
+        font-family: $bisonOutline;
+        width: 70%;
+        margin-left: 5%;
+
+        @include media-query($medium-up) {
+            width: 50%;
+        }
+    }
+}
+
+.scroll-down {
+    position: absolute;
+        right: 5%;
+        bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+
+    p {
+        font-family: $bisonBold;
+        writing-mode: vertical-rl;
+        margin-bottom: 24px;
+    }
+
+    span {
+        display: block;
+        height: 200px;
+        width: 1px;
+        background: $black;
+    }
+}
+
+.project__inner {
+    position: relative;
+}
+
+.project-bg {
+    width: 100%;
+    height: 300vh;
+    background: $bgColor;
+    z-index: -1;
+}
+
+.project__container {
+    position: relative;
+    // background: $bgColor;
+    padding: 96px 0;
+
+    // &::before {
+    //     content: '';
+    //     position: absolute;
+    //         top: 0;
+    //         left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-image: url('../assets/images/asfalt-dark.png');
+    //     opacity: 0.4;
+    // }
+}
+
+.project__wrapper {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+//Prooject Compare
+.project__compare {
+    .project__wrapper {
+        height: 591px;
+    }
+}
+
+//Project Single Image
+.project__single-image {
+    .gatsby-image-wrapper {
+        width: 100%;
+    }
+}
+
+.project__single-image-blurb {
+    width: 90%;
+    margin: 0 auto;
+
+    p {
+        margin: 0;
+    }
+
+    @include media-query($medium-up) {
+        width: 25%;
+    }
+}
+
+
+.project__single-image--left,
+.project__single-image--right {
+
+    @include media-query($medium-up) {
+        .gatsby-image-wrapper {
+            width: 70%;
+            // margin: 0;
+        }
+
+        .project__wrapper {
+            display: flex;
+            align-items: center;
+            max-width: 1400px;
+        }
+    }
+}
+
+//Mobile Views
+.project__mobile {
+    .project__wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
+
+        .image-wrapper {
+            width: 23%;
+
+            &:nth-child(1) {
+                margin-top: 88px;
+            }
+
+            &:nth-child(2) {
+                margin-top: 220px;
+            }
+
+            &:nth-child(4) {
+                margin-top: 112px;
+            }
+        }
+    }
+}
+
+//Project Double
+.project__double {
+
+    .project__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .image-wrapper {
+            width: 48%;
+        }
+
+    }
+}
+
+//STYLES THAT NEED TOO BE CHANGED
+
+.project__about {
+
+    .project__container {
+        width: 90%;
+        max-width: 1080px;
+        margin: 0 auto;
+        @include media-query($large-up) {
+            display: flex;
+        }
+    }
+
+    h5 {
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 700;
+
+        @include media-query($large-up) {
+            width: 30%;
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+        font-size: 0.875rem;
+        @include media-query($large-up) {
+            width: 600px;
+            // margin-left: 124px;
+        }
+    }
+
+    a {
+        color: $white;
+    }
+}
+
+.horizontal-scroll {
+    display: none;
+    width: 100%;
+    color: $black;
+    overflow: hidden;
+    font-family: $bisonOutline;
+    // margin-bottom: 96px;
+    // opacity: 0;
+    // transform: translateY(60px);
+    transition: opacity .25s linear,transform 1s cubic-bezier(.215,.61,.355,1);
+    // &.is-inview {
+    //   opacity: 1;
+    //   transform: none;
+    // }
+
+    .has-scroll-smooth & {
+        display: block;
+    }
+
+    &__wrapper {
+        // position: absolute;
+        font-size: 10vw;
+        white-space: nowrap;
+        font-weight: 600;
+        text-transform: uppercase;
+        line-height: 1;
+
+        @include media-query($medium-up) {
+            font-size: 6vw;
+        }
+
+        span {
+            margin: 1rem;
+            opacity: 0.5;
+        }
+    }
+}

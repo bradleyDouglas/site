@@ -12,11 +12,14 @@ html {
 
 body {
     color: $black;
-    background: $white;
+    background: $bgColor;
     font-family: $calluna;
     font-style: normal;
     font-weight: 400;
-    overflow: hidden;
+
+    &.no-scroll {
+        overflow: hidden;
+    }
 }
 
 html,
@@ -40,15 +43,23 @@ body,
 }
 
 .h1 {
-    @include fluid-type($min-width, $max-width, 40px, 180px );
-    @include fluid-line($min-width, $max-width, 40px, 140px);
+    @include fluid-type($min-width, $max-width, 72px, 180px );
+    @include fluid-line($min-width, $max-width, 64px, 140px);
     @include fluid-letter($min-width, $max-width, 1px, 6.9px);
+}
+
+p {
+    @include fluid-type($min-width, $max-width, 16px, 18px );
+    @include fluid-line($min-width, $max-width, 24px, 26px);
+    @include fluid-letter($min-width, $max-width, 0.3px, 0.9px);
 }
 
 a {
     text-decoration: none;
     color: inherit;
 }
+
+
 
 
 
@@ -91,4 +102,8 @@ a {
             }
         }
     }
+}
+
+.gatsby-image-wrapper {
+    border-radius: 8px;
 }
