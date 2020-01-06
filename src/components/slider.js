@@ -94,11 +94,12 @@ class Slider extends Component {
         this.numberRef = React.createRef()
         this.viewAllRef = React.createRef()
         this.touchStart = null
-        this.localStorageRef = localStorage.getItem("current")
+        // this.localStorageRef = localStorage.getItem("current")
         this.state = {
-            current: localStorage.getItem("current")
-                ? JSON.parse(localStorage.getItem("current"))
-                : 0,
+            current:
+                typeof window !== "undefined" && localStorage.getItem("current")
+                    ? JSON.parse(localStorage.getItem("current"))
+                    : 0,
             previous: null,
             isAnimating: false,
         }
