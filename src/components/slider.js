@@ -281,23 +281,6 @@ class Slider extends Component {
     }
 
     initialTitleTL = next => {
-        // const tl = new TimelineMax({
-        //     onComplete: () => {
-        //         this.setState({ current: next })
-
-        //         TweenMax.fromTo(
-        //             this.titleRef.current,
-        //             1,
-        //             { opacity: 0, filter: "blur(10px)", y: 48 },
-        //             {
-        //                 opacity: 1,
-        //                 filter: "blur(0px)",
-        //                 y: 0,
-        //                 ease: Expo.easeOut,
-        //             }
-        //         )
-        //     },
-        // })
         let tl = gsap.timeline({
             onComplete: () => {
                 this.setState({ current: next })
@@ -328,27 +311,6 @@ class Slider extends Component {
     }
 
     numberTL = () => {
-        // const tl = new TimelineMax({
-        //     onComplete: () => {
-        //         TweenMax.fromTo(
-        //             this.numberRef.current,
-        //             0.7,
-        //             {
-        //                 opacity: 0,
-        //                 // transform: "perspective(300px) translateY(80%) rotateX(-30deg)",
-        //                 xPercent: -101,
-        //             },
-        //             {
-        //                 opacity: 1,
-        //                 // transform:
-        //                 //     "perspective(300px) translateY(0) rotateX(0)",
-        //                 xPercent: 0,
-        //                 y: 0,
-        //                 ease: Expo.easeOut,
-        //             }
-        //         )
-        //     },
-        // })
         let tl = gsap.timeline({
             onComplete: () => {
                 gsap.fromTo(
@@ -383,7 +345,7 @@ class Slider extends Component {
         let masterTL = gsap.timeline({
             onComplete: () => {
                 this.setState({ isAnimating: false })
-                localStorage.setItem("current", JSON.stringify(next))
+                localStorage.setItem("current", next)
             },
         })
 
@@ -437,15 +399,17 @@ class Slider extends Component {
                                                     ".home-out"
                                                 ),
                                                 {
-                                                    duration: 0.9,
+                                                    duration: 0.7,
                                                     yPercent: 100,
                                                     autoAlpha: 0,
-                                                    stagger: 0.15,
-                                                    ease: "back.inOut(2)",
+                                                    stagger: 0.2,
+                                                    ease: "back.in(1)",
                                                     onComplete: () => {
                                                         gsap.to(node, {
-                                                            duration: 1.3,
+                                                            duration: 0.9,
                                                             autoAlpha: 0,
+                                                            ease:
+                                                                "power1.inOut",
                                                         })
                                                     },
                                                 }

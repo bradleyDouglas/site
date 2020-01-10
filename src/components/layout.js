@@ -9,6 +9,7 @@ import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import Intro from "./intro"
 // import "../styles/main.scss"
 
 const Layout = ({ children }) => {
@@ -25,6 +26,7 @@ const Layout = ({ children }) => {
     return (
         <>
             <Header />
+            <Intro />
             <main>{children}</main>
         </>
     )

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { Component, useEffect } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import LocomotiveScroll from "locomotive-scroll"
@@ -6,10 +6,13 @@ import SEO from "../components/seo"
 import { Helmet } from "react-helmet"
 import ProjectHeader from "../components/ProjectHeader"
 import ProjectAbout from "../components/ProjectAbout"
+import ProjectFooter from "../components/ProjectFooter"
 import SliceZone from "../components/sliceZone"
-import ScrollableSection from "../components/scrollableSection"
 
-const Project = ({ data: { prismicProject } }) => {
+const Project = ({
+    data: { prismicProject },
+    pageContext: { next, nextSlug, index },
+}) => {
     const { data, tags } = prismicProject
     const scrollRef = React.createRef()
 
@@ -17,13 +20,19 @@ const Project = ({ data: { prismicProject } }) => {
         const scroll = new LocomotiveScroll({
             el: scrollRef.current,
             smooth: true,
-            getSpeed: true,
-            getDirection: true,
             inertia: 0.6,
+        })
+        scroll.update()
+
+        scroll.on("call", func => {
+            if (func == "scrollToFooter") {
+                const element = document.querySelector("#scrollWrapper")
+                scroll.scrollTo(element)
+            }
         })
 
         // Specify how to clean up after this effect:
-        return function cleanup() {
+        return function destroy() {
             scroll.destroy()
         }
     })
@@ -35,7 +44,7 @@ const Project = ({ data: { prismicProject } }) => {
                     class: "project-template",
                 }}
             />
-            <div className="project">
+            <div className="project" data-index={index}>
                 <Img
                     fluid={data.featured_image.localFile.childImageSharp.fluid}
                     style={{
@@ -56,6 +65,14 @@ const Project = ({ data: { prismicProject } }) => {
                         about={data.about.html}
                     />
                     <SliceZone allSlices={data.body} />
+                    <ProjectFooter
+                        title={next.data.project_title.text}
+                        image={
+                            next.data.featured_image.localFile.childImageSharp
+                                .original.src
+                        }
+                        slug={nextSlug}
+                    />
                 </div>
             </div>
         </>
@@ -76,7 +93,7 @@ export const projectQuery = graphql`
                 featured_image {
                     localFile {
                         childImageSharp {
-                            fluid(grayscale: true) {
+                            fluid {
                                 ...GatsbyImageSharpFluid
                             }
                         }

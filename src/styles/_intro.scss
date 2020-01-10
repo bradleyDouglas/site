@@ -1,0 +1,58 @@
+.intro {
+    position: absolute;
+        top: 0;
+        left: 0;
+    width: 100%;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    background: $black;
+    z-index: 99999999;
+
+    .gone {
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    &__wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__container {
+        position: relative;
+        padding: 24px;
+        text-align: center;
+
+        &::after {
+            content: '';
+            position: absolute;
+                bottom: 0;
+                left: 0;
+            width: 100%;
+            height: 300%;
+            background: linear-gradient(-18deg, $black,$black 55%,hsla(0,0%,100%,0) 80%,hsla(0,0%,100%,0));
+            transition: transform 5s 0.9s cubic-bezier(.215,.61,.355,1);
+        }
+
+        &.go {
+            &::after {
+                transform: translateY(101%);
+            }
+        }
+    }
+
+    &__name {
+        font-family: $bisonOutline;
+        @include fluid-type($min-width, $max-width, 36px, 90px );
+        @include fluid-line($min-width, $max-width, 32px, 70px);
+        @include fluid-letter($min-width, $max-width, 0.5px, 3.45px);
+        margin: 0;
+    }
+
+    &__tag {
+        font-family: $bisonBold;
+    }
+}

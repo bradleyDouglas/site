@@ -21,18 +21,43 @@ exports.createPages = async ({ graphql, actions }) => {
                     node {
                         id
                         uid
+                        data {
+                            project_title {
+                                text
+                            }
+                            featured_image {
+                                localFile {
+                                    childImageSharp {
+                                        original {
+                                            src
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     `)
     const template = path.resolve("src/templates/project.js")
-    projects.data.allPrismicProject.edges.forEach(edge => {
+    const projectsLength = projects.data.allPrismicProject.edges.length
+    projects.data.allPrismicProject.edges.forEach(({ node }, index) => {
         createPage({
-            path: `/${edge.node.uid}`,
+            path: `/${node.uid}`,
             component: template,
             context: {
-                uid: edge.node.uid,
+                uid: node.uid,
+                next:
+                    index === projectsLength - 1
+                        ? projects.data.allPrismicProject.edges[0].node
+                        : projects.data.allPrismicProject.edges[index + 1].node,
+                nextSlug:
+                    index === projectsLength - 1
+                        ? projects.data.allPrismicProject.edges[0].node.uid
+                        : projects.data.allPrismicProject.edges[index + 1].node
+                              .uid,
+                index: index,
             },
         })
     })
