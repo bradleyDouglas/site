@@ -1,6 +1,7 @@
 import React from "react"
 import { gsap } from "gsap"
 import TransitionLink from "gatsby-plugin-transition-link"
+import { document } from "browser-monads"
 
 const Header = ({ siteTitle }) => (
     <header className="header">
