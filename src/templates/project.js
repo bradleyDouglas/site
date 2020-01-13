@@ -57,7 +57,7 @@ const Project = ({
                         opacity: `0.1`,
                     }}
                 ></Img>
-                <div className="project__inner" ref={scrollRef}>
+                <div className="project__inner inner" ref={scrollRef}>
                     <ProjectHeader title={data.project_title.text} />
                     <ProjectAbout
                         roles={data.roles}

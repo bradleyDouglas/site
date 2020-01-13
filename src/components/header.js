@@ -10,25 +10,40 @@ const Header = ({ siteTitle }) => (
                     to="/"
                     exit={{
                         trigger: ({ exit, node }) => {
-                            gsap.to(node.querySelectorAll(".project__inner"), {
-                                duration: 0.4,
-                                autoAlpha: 0,
-                                // onComplete: () => {
-                                //     gsap.to(
-                                //         node.querySelector(
-                                //             ".gatsby-image-wrapper"
-                                //         ),
-                                //         {
-                                //             duration: 0.8,
-                                //             autoAlpha: 1,
-                                //             ease: "power1.inOut",
-                                //         }
-                                //     )
-                                // },
-                            })
+                            if (
+                                document.body.classList.contains(
+                                    "project-template"
+                                )
+                            ) {
+                                gsap.to(
+                                    node.querySelectorAll(".project-inner"),
+                                    {
+                                        duration: 0.4,
+                                        autoAlpha: 0,
+                                    }
+                                )
+                            } else {
+                                node.querySelector(
+                                    ".about__wrapper"
+                                ).classList.add("is-out")
+                                node.querySelector(
+                                    ".about-bg__in"
+                                ).classList.add("no-show")
+                                node.querySelector(
+                                    ".about__inner"
+                                ).classList.add("no-show")
+                            }
                         },
-                        delay: 0.5,
-                        length: 1.5,
+                        delay: document.body.classList.contains(
+                            "project-template"
+                        )
+                            ? 0.5
+                            : 0,
+                        length: document.body.classList.contains(
+                            "project-template"
+                        )
+                            ? 1.5
+                            : 3,
                         zIndex: 2,
                     }}
                     entry={{
@@ -80,7 +95,11 @@ const Header = ({ siteTitle }) => (
                                 }
                             )
                         },
-                        delay: 0.5,
+                        delay: document.body.classList.contains(
+                            "project-template"
+                        )
+                            ? 0.5
+                            : 0.8,
                         zIndex: 0,
                     }}
                 >
@@ -88,7 +107,26 @@ const Header = ({ siteTitle }) => (
                 </TransitionLink>
             </div>
             <div className="header__item">
-                <TransitionLink to="/">About</TransitionLink>
+                <TransitionLink
+                    to="/about"
+                    exit={{ length: 4 }}
+                    entry={{
+                        trigger: ({ exit, node }) => {
+                            gsap.fromTo(
+                                node,
+                                { autoAlpha: 0 },
+                                {
+                                    duration: 1.5,
+                                    autoAlpha: 1,
+                                }
+                            )
+                        },
+                        length: 2,
+                        delay: 0.5,
+                    }}
+                >
+                    About
+                </TransitionLink>
             </div>
         </div>
     </header>

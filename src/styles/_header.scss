@@ -25,11 +25,10 @@
     &__item {
         font-family: $calluna;
         color: $bgColor;
-        transition: color 0.6 cubic-bezier(0.19, 1, 0.22, 1);
+        transition: color 0.9s cubic-bezier(0.19, 1, 0.22, 1);
 
-        .project-template &,
-        .about & {
-            // color: $black;
+        .about-page & {
+            color: $black;
         }
 
         a {

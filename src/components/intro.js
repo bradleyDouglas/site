@@ -17,7 +17,7 @@ const Intro = () => {
             .to(
                 introRef.current,
                 {
-                    duration: 2,
+                    duration: 1.5,
                     autoAlpha: 0,
                     ease: "power2.inOut",
                 },
