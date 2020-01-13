@@ -7,6 +7,7 @@
 
 import React, { useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { document } from "browser-monads"
 
 import Header from "./header"
 import Intro from "./intro"
