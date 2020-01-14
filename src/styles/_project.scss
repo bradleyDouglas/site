@@ -36,6 +36,12 @@
     align-items: center;
     justify-content: center;
     z-index: 1;
+    opacity: 0;
+    transition: opacity 1s 2.5s ease-in-out;
+
+    .is-inview & {
+        opacity: 1;
+    }
 
 
     p {

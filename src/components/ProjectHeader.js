@@ -12,10 +12,10 @@ const ProjectHeader = ({ title }) => {
                 >
                     {title}
                 </h1>
-            </div>
-            <div className="scroll-down">
-                <p>scroll down</p>
-                <span></span>
+                <div className="scroll-down">
+                    <p>scroll down</p>
+                    <span></span>
+                </div>
             </div>
         </ScrollableSection>
     )

@@ -256,7 +256,24 @@ class Slider extends Component {
     }
 
     handleTouchEvents = event => {
-        console.log(this.touchStart, event.touches[0].clientY)
+        let direction = this.touchStart - event.touches[0].clientY
+        let next
+
+        if (direction > 0 && !this.state.isAnimating) {
+            next =
+                this.state.current === this.titles.length - 1
+                    ? 0
+                    : this.state.current + 1
+            this.masterTL(next)
+            this.setState({ isAnimating: true })
+        } else if (direction < 0 && !this.state.isAnimating) {
+            next =
+                this.state.current - 1 < 0
+                    ? this.titles.length - 1
+                    : this.state.current - 1
+            this.masterTL(next)
+            this.setState({ isAnimating: true })
+        }
     }
 
     imageTL = next => {

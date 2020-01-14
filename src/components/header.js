@@ -17,7 +17,7 @@ const Header = ({ siteTitle }) => (
                                 )
                             ) {
                                 gsap.to(
-                                    node.querySelectorAll(".project-inner"),
+                                    node.querySelectorAll(".project__inner"),
                                     {
                                         duration: 0.4,
                                         autoAlpha: 0,
