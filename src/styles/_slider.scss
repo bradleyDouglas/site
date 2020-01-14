@@ -37,6 +37,10 @@
             fill: $white;
             animation: rotate-center 24s linear infinite both;
             cursor: pointer;
+
+            @include media-query($small) {
+                width: 96px;
+            }
         }
     }
 }

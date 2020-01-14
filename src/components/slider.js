@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from "gatsby"
 import { gsap } from "gsap"
 import * as THREE from "three"
 import TransitionLink from "gatsby-plugin-transition-link"
-import ViewAll from "../assets/svg/viewAll.inline.svg"
+import DD from "../assets/svg/dd.inline.svg"
 import { Link } from "gatsby"
 
 gsap.defaults({ overwrite: "auto" })
@@ -457,7 +457,7 @@ class Slider extends Component {
                         </div>
                     </div>
                     <div className="view-all home-out">
-                        <ViewAll />
+                        <DD />
                     </div>
                 </section>
             </>
