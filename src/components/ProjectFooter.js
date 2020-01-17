@@ -16,7 +16,7 @@ const ProjectFooter = ({ title, slug, image }) => {
                 id="scrollWrapper"
                 className="project-footer__wrapper"
                 data-scroll
-                data-scroll-offset="50%"
+                data-scroll-offset="30%"
                 data-scroll-call="scrollToFooter"
             >
                 <TransitionLink

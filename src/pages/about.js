@@ -89,6 +89,17 @@ const AboutPage = () => {
                                         behind the details/design.
                                     </strong>
                                 </p>
+                                <p className="about__contact">
+                                    <a href="mailto:brad@bradleyjdouglas.com">
+                                        brad@bradleyjdouglas.com
+                                    </a>
+                                    <a href="tel:1-402-960-5850">
+                                        402.960.5850
+                                    </a>
+                                    <a href="https://twitter.com/bradjdouglas">
+                                        @bradjdouglas
+                                    </a>
+                                </p>
                             </div>
                             <div className="about__image">
                                 <Img

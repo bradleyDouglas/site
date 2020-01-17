@@ -108,6 +108,10 @@ a {
 
 .gatsby-image-wrapper {
     border-radius: 8px;
+
+    @include media-query($small) {
+        border-radius: 4px;
+    }
 }
 
 .test {

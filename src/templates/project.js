@@ -20,6 +20,7 @@ const Project = ({
         const scroll = new LocomotiveScroll({
             el: scrollRef.current,
             smooth: true,
+            smoothMobile: true,
             inertia: 0.6,
         })
         scroll.update()
@@ -28,6 +29,10 @@ const Project = ({
             if (func == "scrollToFooter") {
                 const element = document.querySelector("#scrollWrapper")
                 scroll.scrollTo(element)
+
+                setTimeout(() => {
+                    scroll.stop()
+                }, 400)
             }
         })
 
@@ -108,18 +113,6 @@ export const projectQuery = graphql`
                     html
                 }
                 body {
-                    ... on PrismicProjectBodyBeforeAndAfter {
-                        id
-                        slice_type
-                        primary {
-                            after_image {
-                                url
-                            }
-                            before_image {
-                                url
-                            }
-                        }
-                    }
                     ... on PrismicProjectBodySingleImage {
                         id
                         slice_type

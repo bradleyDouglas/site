@@ -31,12 +31,15 @@
             right: 10vw;
             bottom: 10vh;
 
+            @include media-query($small) {
+                bottom: 5vh;
+            }
+
         svg {
             width: 135px;
             height: auto;
-            fill: $white;
+            fill: $bgColor;
             animation: rotate-center 24s linear infinite both;
-            cursor: pointer;
 
             @include media-query($small) {
                 width: 96px;
@@ -95,7 +98,7 @@
 }
 
 .number {
-    color: $white;
+    color: $bgColor;
     font-family: $bisonBold;
 
     &--large {
