@@ -14,7 +14,7 @@ const ProjectHeader = ({ title }) => {
                 </h1>
                 <div className="scroll-down">
                     <p>scroll down</p>
-                    <span></span>
+                    {/* <span></span> */}
                 </div>
             </div>
         </ScrollableSection>

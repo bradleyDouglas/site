@@ -30,7 +30,7 @@
 .scroll-down {
     position: absolute;
         right: 5%;
-        bottom: 0;
+        bottom: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +40,7 @@
     transition: opacity 1s 2.5s ease-in-out;
 
     .is-inview & {
-        opacity: 1;
+        opacity: 0.6;
     }
 
 

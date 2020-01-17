@@ -18,6 +18,7 @@ body {
     font-family: $calluna;
     font-style: normal;
     font-weight: 400;
+    // cursor: none;
 
     &.no-scroll {
         overflow: hidden;
@@ -59,6 +60,7 @@ p {
 a {
     text-decoration: none;
     color: inherit;
+    // cursor: none;
 }
 
 
@@ -114,7 +116,31 @@ a {
     }
 }
 
-.test {
-    display: none;
-    opacity: 0;
+//Cursor
+
+.cursor {
+
+    &__inner {
+        z-index: 9999;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        mix-blend-mode: difference;
+        border-radius: 50%;
+    }
+
+    &__inner--dot {
+        width: 6px;
+        height: 6px;
+        background: #fff;
+    }
+
+    &__inner--circle {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #fff;
+    }
 }
+
+

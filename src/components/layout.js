@@ -10,6 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import Intro from "./intro"
+import Cursor from "./Cursor"
 // import "../styles/main.scss"
 
 const Layout = ({ children }) => {

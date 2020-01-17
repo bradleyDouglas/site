@@ -6,7 +6,12 @@ const DoubleDesktop = ({ input }) => {
     return (
         <ScrollableSection classNames="project__container project__double">
             <div className="project__wrapper" data-scroll>
-                <div className="image-wrapper">
+                <div
+                    className="image-wrapper"
+                    data-scroll
+                    data-scroll-delay="0.06"
+                    data-scroll-repeat
+                >
                     <Img
                         fluid={
                             input.primary.left_image.localFile.childImageSharp
