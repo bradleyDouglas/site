@@ -36,7 +36,8 @@ function SEO({ description, lang, meta, title, image }) {
 
     const metaDescription = description || site.siteMetadata.description
     const metaTitle = title || site.siteMetadata.title
-    const metaImage = image || file.childImageSharp.fluid.src
+    const metaImage =
+        image || `${site.siteMetadata.url}${file.childImageSharp.fluid.src}`
 
     return (
         <Helmet
@@ -105,7 +106,7 @@ SEO.propTypes = {
     description: PropTypes.string,
     lang: PropTypes.string,
     meta: PropTypes.arrayOf(PropTypes.object),
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 }
 
 export default SEO
