@@ -9,7 +9,7 @@ module.exports = {
         description: `The personal portfolio of Brad Douglas`,
         author: `@bradjdouglas`,
         url: `https://bradleyjdouglas.com`,
-        image: `./src/assets/images/og-02.jpg`,
+        image: '/src/assets/images/og-02.jpg',
     },
     plugins: [
         {
