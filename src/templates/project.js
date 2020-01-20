@@ -1,13 +1,13 @@
-import React, { Component, useEffect } from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import LocomotiveScroll from "locomotive-scroll"
-import SEO from "../components/seo"
-import { Helmet } from "react-helmet"
-import ProjectHeader from "../components/ProjectHeader"
-import ProjectAbout from "../components/ProjectAbout"
-import ProjectFooter from "../components/ProjectFooter"
-import SliceZone from "../components/sliceZone"
+import React, { Component, useEffect } from 'react'
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import LocomotiveScroll from 'locomotive-scroll'
+import SEO from '../components/seo'
+import { Helmet } from 'react-helmet'
+import ProjectHeader from '../components/ProjectHeader'
+import ProjectAbout from '../components/ProjectAbout'
+import ProjectFooter from '../components/ProjectFooter'
+import SliceZone from '../components/sliceZone'
 
 const Project = ({
     data: { prismicProject },
@@ -25,9 +25,9 @@ const Project = ({
         })
         scroll.update()
 
-        scroll.on("call", func => {
-            if (func == "scrollToFooter") {
-                const element = document.querySelector("#scrollWrapper")
+        scroll.on('call', func => {
+            if (func == 'scrollToFooter') {
+                const element = document.querySelector('#scrollWrapper')
                 scroll.scrollTo(element)
 
                 setTimeout(() => {
@@ -46,9 +46,10 @@ const Project = ({
         <>
             <Helmet
                 bodyAttributes={{
-                    class: "project-template",
+                    class: 'project-template',
                 }}
             />
+            <SEO title={data.project_title.text} />
             <div className="project" data-index={index}>
                 <Img
                     fluid={data.featured_image.localFile.childImageSharp.fluid}
