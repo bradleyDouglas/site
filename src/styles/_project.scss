@@ -230,10 +230,8 @@
 
     p {
         margin-bottom: 0;
-        // font-size: 0.875rem;
         @include media-query($large-up) {
             width: 600px;
-            // margin-left: 124px;
         }
     }
 

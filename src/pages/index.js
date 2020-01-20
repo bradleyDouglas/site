@@ -1,13 +1,12 @@
-import React from "react"
-import { Link } from "gatsby"
-import SEO from "../components/seo"
-import Slider from "../components/slider"
-import { Helmet } from "react-helmet"
+import React from 'react'
+import { Link } from 'gatsby'
+import SEO from '../components/seo'
+import Slider from '../components/slider'
+import { Helmet } from 'react-helmet'
 
 const IndexPage = () => (
     <>
         <SEO
-            title="Home"
             keywords={[
                 `gatsby`,
                 `portfolio`,
@@ -18,7 +17,7 @@ const IndexPage = () => (
         />
         <Helmet
             bodyAttributes={{
-                class: "no-scroll",
+                class: 'no-scroll',
             }}
         />
         <Slider />

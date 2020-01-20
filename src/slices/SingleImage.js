@@ -11,7 +11,6 @@ const SingleImage = ({ input }) => {
             <div className="project__wrapper" data-scroll>
                 <Img
                     fluid={input.primary.image.localFile.childImageSharp.fluid}
-                    style={{ transition: `opacity 1000ms ease 0s;` }}
                 />
 
                 {input.primary.image_blurb.text && (
