@@ -1,13 +1,15 @@
-const path = require("path")
-require("dotenv").config({
+const path = require('path')
+require('dotenv').config({
     path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
     siteMetadata: {
         title: `Brad Douglas`,
-        description: `Design + Develop`,
+        description: `The personal portfolio of Brad Douglas`,
         author: `@bradjdouglas`,
+        url: `https://bradleyjdouglas.com`,
+        image: `./src/assets/images/og-02.jpg`,
     },
     plugins: [
         {
@@ -47,21 +49,21 @@ module.exports = {
             },
         },
         {
-            resolve: "gatsby-plugin-react-svg",
+            resolve: 'gatsby-plugin-react-svg',
             options: {
                 rule: {
-                    include: path.resolve(__dirname, "src/assets/svg"),
+                    include: path.resolve(__dirname, 'src/assets/svg'),
                 },
             },
         },
         //
         // Un-comment this for webfonts: https://www.gatsbyjs.org/packages/gatsby-plugin-web-font-loader/
         {
-            resolve: "gatsby-plugin-web-font-loader",
+            resolve: 'gatsby-plugin-web-font-loader',
             options: {
                 typekit: {
-                    id: "lft4tcj",
-                    api: "//use.typekit.net",
+                    id: 'lft4tcj',
+                    api: '//use.typekit.net',
                 },
             },
         },
@@ -74,7 +76,7 @@ module.exports = {
         //
         // Transition Link
         {
-            resolve: "gatsby-plugin-transition-link",
+            resolve: 'gatsby-plugin-transition-link',
             options: {
                 layout: require.resolve(`./src/components/layout.js`),
             },

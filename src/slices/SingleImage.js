@@ -1,6 +1,6 @@
-import React from "react"
-import ScrollableSection from "../components/scrollableSection"
-import Img from "gatsby-image"
+import React from 'react'
+import ScrollableSection from '../components/scrollableSection'
+import Img from 'gatsby-image'
 
 const SingleImage = ({ input }) => {
     const side = input.primary.side.toLowerCase()
