@@ -1,6 +1,12 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import { BeforeAfter, SingleImage, MobileViews, DoubleDesktop } from "../slices"
+import {
+    BeforeAfter,
+    SingleImage,
+    MobileViews,
+    DoubleDesktop,
+    Gallery,
+} from "../slices"
 
 export default class SliceZone extends Component {
     render() {
@@ -16,6 +22,8 @@ export default class SliceZone extends Component {
                     return <MobileViews key={s.id} input={s} />
                 case "double_desktop":
                     return <DoubleDesktop key={s.id} input={s} />
+                case "gallery":
+                    return <Gallery key={s.id} input={s} />
                 default:
                     return null
             }

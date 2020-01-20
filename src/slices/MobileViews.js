@@ -8,13 +8,14 @@ const MobileViews = ({ input }) => {
     return (
         <ScrollableSection classNames="project__container project__mobile">
             <div className={`project__wrapper ${modifier}`} data-scroll>
-                {images.map(image => (
+                {images.map((image, index) => (
                     <div
                         className={`image-wrapper image-wrapper--${modifier}`}
                         key={image.image.localFile.childImageSharp.id}
+                        // data-scroll
+                        // data-scroll-speed={index}
                     >
                         <Img
-                            // key={image.image.localFile.childImageSharp.id}
                             fluid={image.image.localFile.childImageSharp.fluid}
                         />
                     </div>

@@ -174,6 +174,22 @@ export const projectQuery = graphql`
                             }
                         }
                     }
+                    ... on PrismicProjectBodyGallery {
+                        id
+                        slice_type
+                        items {
+                            gallery_image {
+                                localFile {
+                                    childImageSharp {
+                                        id
+                                        fluid {
+                                            ...GatsbyImageSharpFluid
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

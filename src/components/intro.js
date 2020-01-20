@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { gsap } from "gsap"
+import Logo from "../assets/svg/monogram.svg"
 
 const Intro = () => {
     const introRef = React.createRef()
@@ -29,8 +30,9 @@ const Intro = () => {
         <section className="intro" ref={introRef}>
             <div className="intro__wrapper">
                 <div className="intro__container" ref={containerRef}>
-                    <p className="intro__name">Brad Douglas</p>
-                    <p className="intro__tag">design + develop</p>
+                    {/* <p className="intro__name">Brad Douglas</p>
+                    <p className="intro__tag">design + develop</p> */}
+                    <Logo style={{ width: `150px` }} />
                 </div>
             </div>
         </section>
