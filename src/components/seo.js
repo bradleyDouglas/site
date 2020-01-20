@@ -29,6 +29,7 @@ function SEO({ description, lang, meta, title, author, url, image }) {
 
     const metaDescription = description || site.siteMetadata.description
     const metaTitle = title || site.siteMetadata.title
+    const metaImage = image || `${__dirname}/assets/images/og-02.jpg`
 
     return (
         <Helmet
@@ -60,7 +61,7 @@ function SEO({ description, lang, meta, title, author, url, image }) {
                 },
                 {
                     property: `og:image`,
-                    content: site.siteMetadata.image,
+                    content: metaImage,
                 },
                 {
                     name: `twitter:card`,
@@ -80,7 +81,7 @@ function SEO({ description, lang, meta, title, author, url, image }) {
                 },
                 {
                     name: `twitter:image`,
-                    content: site.siteMetadata.image,
+                    content: metaImage,
                 },
             ].concat(meta)}
         />
