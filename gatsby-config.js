@@ -21,6 +21,14 @@ module.exports = {
             },
         },
         {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                // replace "UA-XXXXXXXXX-X" with your own Tracking ID
+                trackingId: 'UA-109622645-1',
+                head: true,
+            },
+        },
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: `${__dirname}/src/assets/images`,
