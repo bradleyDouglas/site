@@ -1,12 +1,12 @@
-import React, { Component } from "react"
-import { StaticQuery, graphql } from "gatsby"
-import { gsap } from "gsap"
-import * as THREE from "three"
-import TransitionLink from "gatsby-plugin-transition-link"
-import DD from "../assets/svg/dd.inline.svg"
-import { Link } from "gatsby"
+import React, { Component } from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import { gsap } from 'gsap'
+import * as THREE from 'three'
+import TransitionLink from 'gatsby-plugin-transition-link'
+import DD from '../assets/svg/dd.inline.svg'
+import { Link } from 'gatsby'
 
-gsap.defaults({ overwrite: "auto" })
+gsap.defaults({ overwrite: 'auto' })
 
 const HOME_QUERY = graphql`
     query HomeQuery {
@@ -97,8 +97,8 @@ class Slider extends Component {
         // this.localStorageRef = localStorage.getItem("current")
         this.state = {
             current:
-                typeof window !== "undefined" && localStorage.getItem("current")
-                    ? JSON.parse(localStorage.getItem("current"))
+                typeof window !== 'undefined' && localStorage.getItem('current')
+                    ? JSON.parse(localStorage.getItem('current'))
                     : 0,
             previous: null,
             isAnimating: false,
@@ -114,8 +114,8 @@ class Slider extends Component {
             document.documentElement.clientHeight,
             window.innerHeight || 0
         )
-        this.renderW = ""
-        this.renderH = ""
+        this.renderW = ''
+        this.renderH = ''
 
         if (this.renderWidth < this.renderHeight) {
             this.renderW = this.renderHeight
@@ -137,7 +137,7 @@ class Slider extends Component {
 
         this.scene.add(this.mesh)
 
-        window.addEventListener("resize", e => {
+        window.addEventListener('resize', e => {
             this.renderer.setSize(this.renderW, this.renderH)
         })
     }
@@ -189,13 +189,13 @@ class Slider extends Component {
     setMaterial = () => {
         this.material = new THREE.ShaderMaterial({
             uniforms: {
-                dispFactor: { type: "f", value: 0.0 },
+                dispFactor: { type: 'f', value: 0.0 },
                 currentImage: {
-                    type: "t",
+                    type: 't',
                     value: this.bgImages[this.state.current],
                 },
                 nextImage: {
-                    type: "t",
+                    type: 't',
                     value: this.bgImages[this.state.next],
                 },
             },
@@ -286,7 +286,7 @@ class Slider extends Component {
         tl.to(this.material.uniforms.dispFactor, {
             duration: 1.4,
             value: 1,
-            ease: "expo.inOut",
+            ease: 'expo.inOut',
             onComplete: () => {
                 this.material.uniforms.currentImage.value = this.bgImages[next]
                 this.material.uniforms.currentImage.needsUpdate = true
@@ -304,13 +304,13 @@ class Slider extends Component {
 
                 gsap.fromTo(
                     this.titleRef.current,
-                    { autoAlpha: 0, filter: "blur(10px)", y: 48 },
+                    { autoAlpha: 0, filter: 'blur(10px)', y: 48 },
                     {
                         duration: 1,
                         autoAlpha: 1,
-                        filter: "blur(0px)",
+                        filter: 'blur(0px)',
                         y: 0,
-                        ease: "expo.out",
+                        ease: 'expo.out',
                     }
                 )
             },
@@ -319,9 +319,9 @@ class Slider extends Component {
         tl.to(this.titleRef.current, {
             duration: 1,
             autoAlpha: 0,
-            filter: "blur(10px)",
+            filter: 'blur(10px)',
             y: -48,
-            ease: "expo.inOut",
+            ease: 'expo.inOut',
         })
 
         return tl
@@ -341,7 +341,7 @@ class Slider extends Component {
                         opacity: 1,
                         xPercent: 0,
                         y: 0,
-                        ease: "expo.out",
+                        ease: 'expo.out',
                     }
                 )
             },
@@ -351,7 +351,7 @@ class Slider extends Component {
             duration: 1,
             opacity: 0,
             xPercent: -101,
-            ease: "expo.inOut",
+            ease: 'expo.inOut',
         })
 
         return tl
@@ -362,7 +362,7 @@ class Slider extends Component {
         let masterTL = gsap.timeline({
             onComplete: () => {
                 this.setState({ isAnimating: false })
-                localStorage.setItem("current", next)
+                localStorage.setItem('current', next)
             },
         })
 
@@ -413,20 +413,20 @@ class Slider extends Component {
                                         trigger: ({ exit, node }) => {
                                             gsap.to(
                                                 node.querySelectorAll(
-                                                    ".home-out"
+                                                    '.home-out'
                                                 ),
                                                 {
                                                     duration: 0.7,
                                                     yPercent: 100,
                                                     autoAlpha: 0,
                                                     stagger: 0.2,
-                                                    ease: "back.in(1)",
+                                                    ease: 'back.in(1)',
                                                     onComplete: () => {
                                                         gsap.to(node, {
                                                             duration: 0.9,
                                                             autoAlpha: 0,
                                                             ease:
-                                                                "power1.inOut",
+                                                                'power1.inOut',
                                                         })
                                                     },
                                                 }
@@ -458,6 +458,9 @@ class Slider extends Component {
                     </div>
                     <div className="view-all home-out">
                         <DD />
+                    </div>
+                    <div className="slideshow__scroll">
+                        <p>(scroll)</p>
                     </div>
                 </section>
             </>
