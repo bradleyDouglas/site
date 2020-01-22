@@ -10,7 +10,9 @@ gsap.defaults({ overwrite: 'auto' })
 
 const HOME_QUERY = graphql`
     query HomeQuery {
-        allPrismicProject {
+        allPrismicProject(
+            sort: { fields: last_publication_date, order: DESC }
+        ) {
             nodes {
                 id
                 uid

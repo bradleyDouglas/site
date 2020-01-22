@@ -16,7 +16,9 @@ exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
     const projects = await graphql(`
         {
-            allPrismicProject {
+            allPrismicProject(
+                sort: { fields: last_publication_date, order: DESC }
+            ) {
                 edges {
                     node {
                         id
@@ -40,7 +42,7 @@ exports.createPages = async ({ graphql, actions }) => {
             }
         }
     `)
-    const template = path.resolve("src/templates/project.js")
+    const template = path.resolve('src/templates/project.js')
     const projectsLength = projects.data.allPrismicProject.edges.length
     projects.data.allPrismicProject.edges.forEach(({ node }, index) => {
         createPage({
@@ -64,7 +66,7 @@ exports.createPages = async ({ graphql, actions }) => {
 }
 
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
-    if (stage === "build-html") {
+    if (stage === 'build-html') {
         actions.setWebpackConfig({
             module: {
                 rules: [
