@@ -1,10 +1,10 @@
-import React, { useEffect } from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import LocomotiveScroll from "locomotive-scroll"
-import ScrollableSection from "../components/scrollableSection"
-import Img from "gatsby-image"
-import SEO from "../components/seo"
-import { Helmet } from "react-helmet"
+import React, { useEffect } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import LocomotiveScroll from 'locomotive-scroll'
+import ScrollableSection from '../components/scrollableSection'
+import Img from 'gatsby-image'
+import SEO from '../components/seo'
+import { Helmet } from 'react-helmet'
 
 const ABOUT_QUERY = graphql`
     query AboutQuery {
@@ -35,9 +35,9 @@ const AboutPage = () => {
             smooth: true,
             inertia: 0.6,
         })
-        aboutRef.current.querySelector(".about-bg__in").classList.add("show")
+        aboutRef.current.querySelector('.about-bg__in').classList.add('show')
 
-        scrollRef.current.classList.add("show")
+        scrollRef.current.classList.add('show')
 
         // Specify how to clean up after this effect:
         return function destroy() {
@@ -59,7 +59,7 @@ const AboutPage = () => {
             />
             <Helmet
                 bodyAttributes={{
-                    class: "about-page",
+                    class: 'about-page',
                 }}
             />
             <article className="about" ref={aboutRef}>
@@ -96,7 +96,10 @@ const AboutPage = () => {
                                     <a href="tel:1-402-960-5850">
                                         402.960.5850
                                     </a>
-                                    <a href="https://twitter.com/bradjdouglas">
+                                    <a
+                                        target="_blank"
+                                        href="https://twitter.com/bradjdouglas"
+                                    >
                                         @bradjdouglas
                                     </a>
                                 </p>
