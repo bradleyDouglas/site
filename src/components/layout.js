@@ -37,16 +37,7 @@ const Layout = ({ children }) => {
 
     return (
         <>
-            <div
-                id="awwwards"
-                style={{
-                    position: `fixed`,
-                    zIndex: `999`,
-                    transform: `translateY(-50%)`,
-                    top: `40%`,
-                    left: `0`,
-                }}
-            >
+            <div class="awwwards awwwards--top">
                 <a href="https://www.awwwards.com" target="_blank">
                     <svg width="53.08" height="171.358">
                         <path
@@ -60,16 +51,7 @@ const Layout = ({ children }) => {
                     </svg>
                 </a>
             </div>
-            <div
-                id="awwwards"
-                style={{
-                    position: `fixed`,
-                    zIndex: `999`,
-                    transform: `translateY(-50%)`,
-                    top: `60%`,
-                    left: `0`,
-                }}
-            >
+            <div class="awwwards awwwards--bottom">
                 <a href="https://www.awwwards.com" target="_blank">
                     <svg width="53.08" height="171.358">
                         <path

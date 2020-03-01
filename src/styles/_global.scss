@@ -64,8 +64,25 @@ a {
     // cursor: none;
 }
 
+.awwwards {
+    position: fixed;
+        right: 0;
+    z-index: 999;
+    transform: translateY(-50%);
 
+    @include media-query($small) {
+        right: -10px;
+    }
 
+    &--top {
+        top: 40%;
+    }
+
+    &--bottom {
+        toop: 65%;
+    }
+
+}
 
 
 //HOLD
