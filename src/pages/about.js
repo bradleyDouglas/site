@@ -100,7 +100,13 @@ const AboutPage = () => {
                                         target="_blank"
                                         href="https://twitter.com/bradjdouglas"
                                     >
-                                        @bradjdouglas
+                                        twitter
+                                    </a>
+                                    <a
+                                        target="_blank"
+                                        href="https://medium.com/@bradjdouglas"
+                                    >
+                                        medium
                                     </a>
                                 </p>
                             </div>
